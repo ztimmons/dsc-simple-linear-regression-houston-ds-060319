@@ -2,7 +2,7 @@
 # Simple Linear Regression 
 
 ## Introduction
-Regression analysis is usually the first real "learning" algorithm that aspiring data scientists will come across. It is one of the simplest algorithms to master, however,  still requires some mathematical and statistical understanding of the underlying regression process. This lesson will introduce you to regression process based on the statistical ideas we have discovered so far. 
+Regression analysis is often the first real "learning algorithm" that aspiring data scientists will come across. It is one of the simplest algorithms to master, but it still requires some mathematical and statistical understanding of the underlying regression process. This lesson will introduce you to regression process based on the statistical ideas we have discovered so far. 
 
 ## Objectives
 You will be able to:
@@ -13,76 +13,97 @@ You will be able to:
 * Calculate a regression line based on calculated slope and intercept
 * Predict a target value for a previously unseen input feature, based on model coefficients
 
-## Linear regression
+## Linear Regression
 
-So far, we have covered topics like basic hypothesis testing using z-scores, variable relationships with correlation and covariance etc. In this section, we shall further build upon these ideas to explain the process of regression analysis. 
+Regression analysis is one of the most important statistical techniques for business applications. It’s a statistical methodology that helps estimate the strength and direction of the relationship between two (or more variables). Regression results show whether the relationship is valid or not. It also also helps to _predict_ an unknown value based on the derived relationship.
 
-Regression analysis is one of the most important statistical techniques for business applications. It’s a statistical methodology that helps estimate the strength and direction of the relationship between two (or more variables). Regression results show whether this relationship is valid or not. It also also, helps __predict__ an unknown value based on the derived relationship.
+> Regression Analysis is a __parametric__ technique used to **predict** the value of an unknown target variable (or dependent variable) $y$ based on one or more of known input features (or independent variables, predictors), often denoted by $x$. 
 
-> Regression Analysis is a __parametric__ technique used to **predict** the value of an unknown target variable $Y$ based on one or more of known input features as variable $X$. 
 
-The factor that is being predicted (the factor that the equation solves for) is called the __dependent variable__. The factors that are used to predict the value of the dependent variable are called the __independent variables__.
- For example, height of a human being and his foot size are generally correlated variables as seen in the scatter plot below. Taller persons, by in large tend to have a bigger foot/shoe size.
+Let's consider another example. Someone's height and foot size are generally considererd to be related. Generally speaking, taller people tend to have bigger feet (and, obviously, shoe size).
 
-<img src="hf.png" width=300>
+<img src="images/hf.png" width=400>
 
-The linear regression analyses can predict foot size (dependent variable), given height (independent variable) of an individual. Regression is proven to give credible results if the data follows standard parametric assumptions like normality, linearity etc. These will be covered in upcoming lessons in detail. In general, regression analysis helps us in data analytics in following ways:
+We can use a linear regression analysis here to predict foot size (dependent variable), given height (independent variable) of an individual. Regression is proven to give credible results if the data follows standard parametric assumptions like normality, linearity etc. These will be covered in upcoming lessons in detail. In general, regression analysis helps us in following ways:
 
-* Finding an association, relationship between variables.
-* Identifying which variables contribute more towards the outcomes.
-* **Prediction** of future observations. 
+* Finding an **association** or relationship between certain phenomenons or variables
+* Identifying **which variables contribute** more towards the outcomes
+* **Prediction** of future observations
 
-### Why is it called "linear" regression?
+### Why "linear" regression?
 
-As we saw in previous lesson, the term **Linear** implies that the model functions along a straight (or nearly straight) line. **Linearity**, one of the assumptions of this approach, suggests that the relationship between dependent and independent variable can be expressed in a straight line. 
+As you learned in previous lesson, the term **linear** implies that the model functions along a straight (or nearly straight) line. **Linearity**, one of the assumptions of this approach, suggests that the relationship between dependent and independent variable can be expressed as a straight line. 
 
-**Simple Linear Regression** uses a single feature (the independent variable) to model a linear relationship with a target (the dependent variable) by fitting an optimal model (i.e. the best straight line) to describe this relationship.  
+**Simple Linear Regression** uses a single feature (one independent variable) to model a linear relationship with a target (the dependent variable) by fitting an optimal model (i.e. the best straight line) to describe this relationship.  
 
-**Multiple Linear Regression**, which we shall look into detail in the following section, uses more than one features to predict a target variable by fitting a best linear relationship. 
+**Multiple Linear Regression** uses more than one features to predict a target variable by fitting a best linear relationship. 
 
-In this section, we shall mainly focus on simple regression to build a sound understanding. For the example shown above i.e. height vs foot size , a simple linear regression model would fit a line to the data points as shown below:
+In this section, we will mainly focus on simple regression to build a sound understanding. For the example shown above i.e. height vs foot size , a simple linear regression model would fit a line to the data points as follows:
 
-<img src="hf2.png" width=300>
+<img src="images/hf2.png" width=400>
 
-This line can then be used to describe the data and conduct further experiments using this fitted model. So let's move on and see how to calculate such a line in a simple linear regression context 
+This line can then be used to describe the data and conduct further experiments using this fitted model. So let's move on and see how to calculate this "best fit line" in a simple linear regression context 
 
 ## Calculating Regression Coefficients: Slope and Intercepts
 
-As we all know from elementary geometry that equation of a straight line can be written as:
+As seen in the previous lesson, you remember that a straight line can be written as :
 
 $$y=mx+c$$
+or, alternatively
+
+$$y =  \beta_0+ \beta_1 x $$
+
+You may come across other ways of expressing this straight line equation for simple linear regression. Yet there are **four key components** you'll to keep in mind: 
+
+<img src="images/lin_reg.png" width=700>
+
+A quick recap: 
+
+* a **dependent variable** that needs to estimated and predicted (here: $y$) 
+* An **independent variable**, the input variable (here: $x$)
+* The **slope** which determines the angle of the line. Here, the slope is denoted as $m$, or $\beta_1$.
+* The **intercept** which is the constant determining the value of $y$ when $x$ is 0. We denoted the intercept here as $c$ or $\beta_0$.
+
+>_Slope_ and _Intercept_ are the **coefficients** or the **parameters** of a linear regression model. Calculating the regression model simply involves calculation of these two values. 
+
+**Linear regression is simply a manifestation of this simple equation!** So this is as complicated as our linear regression model gets. The equation here is the same one used to find a line in algebra, but in statistics the actual data points don't actually lie on a line!
 
 
-<img src="mxc.jpg" width=200>
-
-Following what we have covered so far, we can say from the equation that:
-
-* $y$ is the dependent variable i.e. the variable that needs to be estimated and predicted.
-* $x$ is the independent variable i.e. the variable that is controllable. It is the input.
-* $m$ is the slope. It determines what will be the angle of the line. It is the parameter denoted as β.
-* $c$ is the intercept. A constant that determines the value of y when x is 0.
-
->__Slope__ and __Intercept__ are called the coefficients of a linear regression model. Calculating the regression model simply involves calculation of these two values. 
-
-__Linear regression is nothing but a manifestation of this simple equation. The formula for the **best-fit** line (or regression line) is still "a Line".__ So this is as complicated as our model can get. The equation here is the same one used to find a line in algebra, but in statistics the points don’t lie perfectly on a line.  
 >The real challenge for regression analysis is to fit a line, out of an infinite number of lines that best describes that data.
 
 Consider the line below to see how we calculate slope and intercept.
 
-<img src="si.png" width=400>
+
+<img src="images/lin_reg_alldetails.png" width=700>
 
 
-- The __Slope (m)__ of a line is the **change in Y over the change in X**. 
+In our example:
 
-For example, a slope of 3/2 means as the x-value increases by 2 units, the y-value moves by 3 units on average.
 
-- The __y-intercept (b)__ is the value on the y-axis **where the line crosses the axis**. 
+$c$ is equal to 15, which is where our line intersects with the y-axis.
 
-For example, in the equation above $y= \frac{3}{2}x +1$, the line crosses the y-axis at the value $b = 1$, with slope 3/2. The coordinates of intercept point would be $(0, 1)$.
+$m$ is equal to 3, which is our slope. 
 
-> When a line crosses the y-axis i.e. at the intercept,  the x-value is always 0.
+You can find a slope by taking an arbitrary part of the line, looking at the 
+differences for the x-value and the y-value for that part of the line, and dividing $\Delta y$ by $\Delta x$. In other words, you can look at the **change in y over the change in x** to find the slope!
 
-You may be thinking that you have to try lots and lots of different lines to see which one fits best. Fortunately, this task is not as complicated as in may seem . Given some data points, the best-fit line always has a distinct slope and y-intercept that can be calculated using simple linear algebraic approaches. Let's quickly visit the required formulas.
+### Important note on notation
+
+Now that you know how the slope and intercept define the line, it's time for some more notation.
+
+Looking at the above plots, you know that you have the blue diamonds there are our observations with associated x- and y-values. 
+
+Now, when we draw our regression line based on these few blew diamonds, we use the following notations:
+
+
+$$\hat{y}=\hat m x+ \hat{c}$$ or 
+$$\hat y =  \hat \beta_0+ \hat \beta_1 x $$
+
+As you can see, you're using a "hat" notation which stands for the fact that we are working with **estimations**.
+- When trying to draw a "best fit line", you're **estimating** the most appropriate value possible for your intercept and your slope, hence $\hat{c}$ /$ \hat \beta_0 $ and  $\hat{m}$ /$ \hat \beta_1 $.
+- Next, when we use our line to predict new values $y$ given $x$, your estimate is an **approximation** based on our estimated parameter values. Hence we use $\hat y $ instead of $y$. $\hat y$ lies _ON_ your regression line, $y$ is the associated y-value for each of the blue diamonds in the plot below. The **error** or the **vertical offset** between the line and the actual observation values is denoted by the red vertical lines in the plot above. Mathematically, the vertical offset can be written as $\mid \hat y - y\mid$.
+
+So how do you find the line with the best fit? You may think that you have to try lots and lots of different lines to see which one fits best. Fortunately, this task is not as complicated as in may seem . Given some data points, the best-fit line always has a distinct slope and y-intercept that can be calculated using simple linear algebraic approaches. Let's quickly visit the required formulas.
 
 ### Best-Fit Line Ingredients
 
@@ -96,7 +117,7 @@ Before we calculate the best-fit line, we have to make sure that we have calcula
 
 * The standard deviation of the y values $(S_Y)$
 
-* The correlation between X and Y ($r$ - Pearson Correlation)
+* The correlation between X and Y ( often denoted by Greek letter "Rho" or $\rho$ - Pearson Correlation)
 
 
 
@@ -104,37 +125,34 @@ Before we calculate the best-fit line, we have to make sure that we have calcula
 
 With above ingredients in hand, we can calculate the slope (shown as $b$ below) of the best-fit line, using the formula:
 
-$$b = r\frac{S_Y}{S_X}$$
+$$\hat m = \rho \frac{S_Y}{S_X}$$
 
-This formula has been taken from statistics (the __Least Squares Method__). 
+This formula is also known as the **least squares method**.
 
-*[Visit this Wikipedia link](https://en.wikipedia.org/wiki/Simple_linear_regression#Fitting_the_regression_line) to get take a look into the maths behind derivation of this formula*
 
-The slope of the best-fit line can be a negative number following a negative correlation.  For example, if an increase in police officers is related to a decrease in the number of crimes in a linear fashion, the correlation and hence the slope of the best-fitting line is negative in this case.
+[You can visit this Wikipedia link](https://en.wikipedia.org/wiki/Simple_linear_regression#Fitting_the_regression_line) to get take a look into the maths behind derivation of this formula.
+
+The slope of the best-fit line can be a negative number following a negative correlation.  For example, if an increase in police officers is related to a decrease in the number of crimes in a linear fashion, the correlation and hence the slope of the best-fitting line in this particular setting is negative.
 
 ## Calculating Intercept
 
-So now that we have the slope value (b above), we can put it back into our formula $(y=mx+c)$ to calculate intercept (shown as a below). 
+So now that we have the slope value (\hat m), we can put it back into our formula $(\hat y = \hat m x+ \hat c)$ to calculate intercept. The idea is that
 
-$$\bar{Y} = a+ b\bar{X}$$
-$$a= \bar{Y} - b\bar{X}$$
-
-
-
-$\bar{X}$ and $\bar{Y}$ are the mean values for variables X and Y.  So, in order to calculate the y-intercept of the best-fit line, we start by finding the slope of the best-fit line using the above formula. Then to find the y-intercept, we multiply slope value by mean of x and subtract the result from mean of y. 
+$$\bar{Y} = \hat c + \hat m \bar{X}$$
+$$ \hat c = \bar{Y} - \hat m\bar{X}$$
 
 
-**Note:** *Above notation $Y=a+ bX$, as opposed to $y=mx+c$ is a standard way to represent that line under discussion is a __regression line__ *. Here slope m = b and intercept c = a. 
+Recall that $\bar{X}$ and $\bar{Y}$ are the mean values for variables X and Y.  So, in order to calculate the $\hat y$-intercept of the best-fit line, we start by finding the slope of the best-fit line using the above formula. Then to find the $\hat y$-intercept, we multiply slope value by mean of x and subtract the result from mean of y. 
 
 ## Predicting from the model
 
-Once we have a regression line with defined parameters slope and intercept as calculated above, we can easily predict the $\hat{Y}$ (target) value for a new $X$ (feature) value using the parameter values:
+As mentioned before, when you have a regression line with defined parameters slope and intercept as calculated above, you can easily predict the $\hat{y}$ (target) value for a new $x$ (feature) value using the estimated parameter values:
 
-$$\hat{Y} = bX +a$$
+$$\hat{y} = \hat mx + \hat c$$
 
-Remember that the difference between Y (in slope and intercept calculation) and $\hat{Y}$ is that $\hat{Y}$ is the $Y$ value predicted by the fitted model, whereas $Y$ carries actual values of variable (called the truth values) that were used to calculated the best fit. 
+Remember that the difference between y and $\hat{y}$ is that $\hat{y}$ is the value predicted by the fitted model, whereas $y$ carries actual values of variable (called the truth values) that were used to calculated the best fit. 
 
-Next we shall move on and try to code these equations in to draw regression line to a simple dataset to see all of this in action. 
+Next, let's move on and try to code these equations in to draw regression line to a simple dataset to see all of this in action. 
 
 ## Additional Reading 
 
@@ -145,4 +163,4 @@ Visit following series of blogs by Bernadette Low for details on topics covered 
 
 ## Summary 
 
-In this lesson, we learnt the basics of simple linear regression between two variables as a problem of fitting a straight line to best describe the data associations on a 2-dimensional plane. Remember this is only half the process. Once we have coded these equations as functions, we shall move on to calculating the loss in our model. 
+In this lesson, You learned the basics of simple linear regression between two variables as a problem of fitting a straight line to best describe the data associations on a 2-dimensional plane.
