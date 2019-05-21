@@ -22,7 +22,7 @@ Regression analysis is one of the most important statistical techniques for busi
 
 Let's consider another example. Someone's height and foot size are generally considered to be related. Generally speaking, taller people tend to have bigger feet (and, obviously, shoe size).
 
-<img src="images/hf.png" width=400>
+<img src="images/heightfoot1.png" width="450">
 
 We can use a linear regression analysis here to predict foot size (dependent variable), given height (independent variable) of an individual. Regression is proven to give credible results if the data follows standard parametric assumptions like normality, linearity etc. These will be covered in upcoming lessons in detail. In general, regression analysis helps us in the following ways:
 
@@ -40,7 +40,7 @@ As you learned in previous lesson, the term **linear** implies that the model fu
 
 In this section, we will mainly focus on simple regression to build a sound understanding. For the example shown above i.e. height vs foot size, a simple linear regression model would fit a line to the data points as follows:
 
-<img src="images/hf2.png" width=400>
+<img src="images/heightfoot2.png" width="450">
 
 This line can then be used to describe the data and conduct further experiments using this fitted model. So let's move on and see how to calculate this "best fit line" in a simple linear regression context 
 
@@ -55,7 +55,7 @@ $$y =  \beta_0+ \beta_1 x $$
 
 You may come across other ways of expressing this straight line equation for simple linear regression. Yet there are **four key components** you'll to keep in mind: 
 
-<img src="images/lin_reg.png" width=700>
+<img src="images/linreg.png" width="650">
 
 A quick recap: 
 
@@ -74,7 +74,7 @@ A quick recap:
 Consider the line below to see how we calculate slope and intercept.
 
 
-<img src="images/lin_reg_alldetails.png" width=700>
+<img src="images/linregall.png" width="650">
 
 
 In our example:
