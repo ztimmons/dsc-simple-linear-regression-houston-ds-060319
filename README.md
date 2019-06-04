@@ -93,7 +93,7 @@ Now that you know how the slope and intercept define the line, it's time for som
 
 Looking at the above plots, you know that you have the blue diamonds there are our observations with associated x- and y-values. 
 
-Now, when we draw our regression line based on these few blew diamonds, we use the following notations:
+Now, when we draw our regression line based on these few blue diamonds, we use the following notations:
 
 
 $$\hat{y}=\hat m x+ \hat{c}$$ or 
